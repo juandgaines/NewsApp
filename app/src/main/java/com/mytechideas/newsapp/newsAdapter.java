@@ -39,7 +39,7 @@ public class newsAdapter extends ArrayAdapter <News>{
 
         sectionView.setText(mNews.getSectionName());
         TitleView.setText(mNews.getTitle());
-        DateView.setText("Published on:"+mNews.getPublicationDate());
+        DateView.setText("Published on: "+mNews.getPublicationDate());
 
         return listViewConvert;
     }

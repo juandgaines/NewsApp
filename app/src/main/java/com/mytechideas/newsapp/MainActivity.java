@@ -1,13 +1,17 @@
 package com.mytechideas.newsapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private String jsonData ="{\"response\":{\"status\":\"ok\",\"userTier\":\"developer\",\"total\":23277,\"startIndex\":1,\"pageSize\":10,\"currentPage\":1,\"pages\":2328,\"orderBy\":\"relevance\"," +
+    private  String jsonData ="{\"response\":{\"status\":\"ok\",\"userTier\":\"developer\",\"total\":23277,\"startIndex\":1,\"pageSize\":10,\"currentPage\":1,\"pages\":2328,\"orderBy\":\"relevance\"," +
             "\"results\":[" +
             "{\"id\":\"us-news/2016/sep/26/presidential-debates-nixon-kennedy-1960\",\"type\":\"article\",\"sectionId\":\"us-news\",\"sectionName\":\"US news\",\"webPublicationDate\":\"2016-09-26T15:57:34Z\",\"webTitle\":\"The Nixon-Kennedy presidential debates: from the archive, 1960\",\"webUrl\":\"https://www.theguardian.com/us-news/2016/sep/26/presidential-debates-nixon-kennedy-1960\",\"apiUrl\":\"https://content.guardianapis.com/us-news/2016/sep/26/presidential-debates-nixon-kennedy-1960\",\"isHosted\":false}," +
             "{\"id\":\"culture/shortcuts/2017/feb/06/the-next-doctor-who-a-black-bond-the-pop-culture-debates-that-never-end\",\"type\":\"article\",\"sectionId\":\"culture\",\"sectionName\":\"Culture\",\"webPublicationDate\":\"2017-02-06T07:00:20Z\",\"webTitle\":\"The next Doctor Who, a black Bond … the pop culture debates that never end\",\"webUrl\":\"https://www.theguardian.com/culture/shortcuts/2017/feb/06/the-next-doctor-who-a-black-bond-the-pop-culture-debates-that-never-end\",\"apiUrl\":\"https://content.guardianapis.com/culture/shortcuts/2017/feb/06/the-next-doctor-who-a-black-bond-the-pop-culture-debates-that-never-end\",\"isHosted\":false}," +
@@ -29,9 +33,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        ArrayList<News> mArrayNews= new ArrayList<>(QueryUtils.extractNewsFromJSON(jsonData));
-        newsAdapter mNewsAdapter= new newsAdapter(this,R.layout.list_item, mArrayNews);
+        final ArrayList<News> mArrayNews= new ArrayList<>(QueryUtils.extractNewsFromJSON(jsonData));
+        final newsAdapter mNewsAdapter= new newsAdapter(this,R.layout.list_item, mArrayNews);
 
         list.setAdapter(mNewsAdapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                News mNewsUrl= mNewsAdapter.getItem(i);
+                Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse(mNewsUrl.getUrl()));
+
+                if(intent.resolveActivity(getPackageManager())!=null){
+
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

@@ -2,8 +2,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="88dp">
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
 
     <TextView
         android:id="@+id/news_icon"
@@ -19,25 +20,30 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/news_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="3"
+            android:textSize="18sp"
             android:fontFamily="sans-serif-condensed"
             android:maxLines="3"
             android:textStyle="bold"
             tools:text="Nombre de la noticia, que por lo general es muy larga"/>
         <TextView
             android:id="@+id/news_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:textSize="14sp"
-            android:layout_marginTop="7dp"
-            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="right"
+            android:layout_gravity="right|bottom"
             android:fontFamily="sans-serif-condensed"
             android:maxLines="2"
             tools:text="Published on: 2017-03-22T17:32:44Z "/>
