@@ -18,32 +18,28 @@ public class QueryUtils {
         ArrayList<News> news = new ArrayList<News>();
 
 
-        try
-        {
-            JSONObject root = new JSONObject (jsonString);
-            JSONObject response= root.getJSONObject("response");
-            JSONArray resultsArray=response.getJSONArray("results");
+        try {
+            JSONObject root = new JSONObject(jsonString);
+            JSONObject response = root.getJSONObject("response");
+            JSONArray resultsArray = response.getJSONArray("results");
 
-            for(int i=0; i<resultsArray.length();i++){
+            for (int i = 0; i < resultsArray.length(); i++) {
                 JSONObject newsObject = resultsArray.getJSONObject(i);
-                String title= newsObject.getString("webTitle");
-                String date= newsObject.getString("webPublicationDate");
-                String url= newsObject.getString("webUrl");
-                String section=newsObject.getString("sectionName");
-                news.add(new News(section,title,date,url ));
+                String title = newsObject.getString("webTitle");
+                String date = newsObject.getString("webPublicationDate");
+                String url = newsObject.getString("webUrl");
+                String section = newsObject.getString("sectionName");
+                news.add(new News(section, title, date, url));
 
             }
 
-        }
-        catch(JSONException e)
+        } catch (JSONException e)
 
         {
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
         }
         return news;
     }
-
-
 
 
 }

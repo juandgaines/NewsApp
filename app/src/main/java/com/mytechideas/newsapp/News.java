@@ -12,26 +12,29 @@ public class News {
     private String mSectionName;
 
 
-    public News(String sectionName,String Title, String publicationDate, String url){
+    public News(String sectionName, String Title, String publicationDate, String url) {
 
-        mTitle=Title;
-        mPublicationDate=publicationDate;
-        mSectionName=sectionName;
-        mUrl=url;
+        mTitle = Title;
+        mPublicationDate = publicationDate;
+        mSectionName = sectionName;
+        mUrl = url;
 
     }
 
-    public String getPublicationDate(){
+    public String getPublicationDate() {
         return mPublicationDate;
     }
-    public String getUrl(){
+
+    public String getUrl() {
         return mUrl;
 
     }
-    public String getSectionName(){
+
+    public String getSectionName() {
         return mSectionName;
     }
-    public String getTitle(){
+
+    public String getTitle() {
         return mTitle;
     }
 }
