@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="88dp">
+
+    <TextView
+        android:id="@+id/news_icon"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/section_drawable"
+        android:layout_margin="16dp"
+        android:gravity="bottom|center"
+        android:textSize="15sp"
+        android:textAllCaps="true"
+        android:textStyle="bold|italic"
+        tools:text="Society"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/news_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-condensed"
+            android:maxLines="3"
+            android:textStyle="bold"
+            tools:text="Nombre de la noticia, que por lo general es muy larga"/>
+        <TextView
+            android:id="@+id/news_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="7dp"
+            android:layout_gravity="right"
+            android:fontFamily="sans-serif-condensed"
+            android:maxLines="2"
+            tools:text="Published on: 2017-03-22T17:32:44Z "/>
+
+    </LinearLayout>
+
+</LinearLayout>
