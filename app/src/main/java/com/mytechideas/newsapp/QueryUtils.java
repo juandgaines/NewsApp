@@ -36,9 +36,26 @@ public class QueryUtils {
             for (int i = 0; i < resultsArray.length(); i++) {
                 JSONObject newsObject = resultsArray.getJSONObject(i);
                 String title = newsObject.getString("webTitle");
-                String date = newsObject.getString("webPublicationDate");
+                String date;
+                try {
+                    date = newsObject.getString("webPublicationDate");
+                }catch(JSONException e){
+                    try {
+                        date = newsObject.getString("sectionId");
+                    }catch (JSONException d){
+
+                        date = "";
+                    }
+
+
+                }
                 String url = newsObject.getString("webUrl");
-                String section = newsObject.getString("sectionName");
+                String section;
+                try {
+                    section = newsObject.getString("sectionName");
+                }catch (JSONException l){
+                    section=title;
+                }
                 news.add(new News(section, title, date, url));
 
             }
