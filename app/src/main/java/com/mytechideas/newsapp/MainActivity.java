@@ -4,10 +4,12 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -81,12 +83,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader onCreateLoader(int i, Bundle bundle) {
         Log.v(LOG_TAG, "initLoader created");
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String searchPref=sharedPrefs.getString(
+                getString(R.string.settings_search_key),
+                getString(R.string.settings_search_default)
+        );
 
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder= baseUri.buildUpon();
 
 
-        uriBuilder.appendQueryParameter("q","debates");
+        uriBuilder.appendQueryParameter("q",searchPref);
         uriBuilder.appendQueryParameter("section","technology");
         uriBuilder.appendQueryParameter("order-by","newest");
 
