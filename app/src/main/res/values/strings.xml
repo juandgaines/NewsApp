@@ -10,4 +10,16 @@
     <string name="settings_search_key" translatable="false">search_data</string>
     <string name="settings_search_label">Search keywords</string>
 
+    <!-- Strings for search ListPreference-->
+    <string name="settings_sections_default">Technology</string>
+    <string name="settings_sections_key" translatable="false">sections_data</string>
+    <string name="settings_sections_label">Sections</string>
+
+    <!--Array label labels for sections -->
+    <string name="settings_search_art_and_design_label">Art and design"</string>
+    <string name="settings_search_australia_news_label" >Australia news"</string>
+    <!--Array label values for sections -->
+    <string name="settings_search_art_and_design_value">artanddesign</string>
+    <string name="settings_search_australia_news_value">austalia-news</string>
+    
 </resources>

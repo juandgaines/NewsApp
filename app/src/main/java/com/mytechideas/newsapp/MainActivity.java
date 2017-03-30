@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,7 +24,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>>{
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>>,Preference.OnPreferenceChangeListener{
 
 
     public static final String LOG_TAG = MainActivity.class.getName();
@@ -88,14 +89,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_search_key),
                 getString(R.string.settings_search_default)
         );
+        String sections = sharedPrefs.getString(
+                getString(R.string.settings_sections_key),
+                getString(R.string.settings_search_default)
+        );
 
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder= baseUri.buildUpon();
 
 
         uriBuilder.appendQueryParameter("q",searchPref);
-        uriBuilder.appendQueryParameter("section","technology");
-        uriBuilder.appendQueryParameter("order-by","newest");
+        uriBuilder.appendQueryParameter("section",sections);
+        //uriBuilder.appendQueryParameter("order-by","newest");
 
         uriBuilder.appendQueryParameter("api-key","c4196b37-80f3-4f1c-a7f2-48a42c587fc2");
 
@@ -118,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // data set. This will trigger the ListView to update.
         if (news != null && !news.isEmpty()){
             mNewsAdapter.addAll(news);
-            mEmptyStateTextView.setVisibility(View.GONE);
+            //mEmptyStateTextView.setVisibility(View.GONE);
         }
     }
 
@@ -144,5 +149,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object o) {
+        return false;
     }
 }

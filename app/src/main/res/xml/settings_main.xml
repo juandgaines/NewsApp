@@ -8,20 +8,21 @@
         android:selectAllOnFocus="true"
         android:title="@string/settings_search_label" />
 
-    <!-- Label for order-by magnitude option [CHAR LIMIT=20]
+
     <ListPreference
-        android:defaultValue="@string/settings_section_default"
+        android:defaultValue="@string/settings_sections_default"
         android:entries="@array/settings_sections_labels"
         android:entryValues="@array/settings_sections_values"
         android:key="@string/settings_sections_key"
         android:title="@string/settings_sections_label"/>
 
-    <ListPreference
-        android:defaultValue="@string/settings_order_by_default"
-        android:entries="@array/settings_order_by_labels"
-        android:entryValues="@array/settings_order_by_values"
-        android:key="@string/settings_order_by_key"
-        android:title="@string/settings_order_by_label"/>
-        -->
+    <!-- Label for order-by magnitude option [CHAR LIMIT=20]
+       <ListPreference
+           android:defaultValue="@string/settings_order_by_default"
+           android:entries="@array/settings_order_by_labels"
+           android:entryValues="@array/settings_order_by_values"
+           android:key="@string/settings_order_by_key"
+           android:title="@string/settings_order_by_label"/>
+           -->
 
 </PreferenceScreen>
