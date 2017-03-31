@@ -97,13 +97,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_search_default)
         );
 
+        String orderBy=sharedPrefs.getString(
+                getString(R.string.settings_order_key),
+                getString(R.string.settings_order_default)
+        );
+
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder= baseUri.buildUpon();
 
 
         uriBuilder.appendQueryParameter("q",searchPref);
-        uriBuilder.appendQueryParameter("section",sections);
-        //uriBuilder.appendQueryParameter("order-by","newest");
+        if(!sections.equals("none")) {
+            uriBuilder.appendQueryParameter("section", sections);
+        }
+        if(!orderBy.equals("none")){
+            uriBuilder.appendQueryParameter("order-by",orderBy);
+        }
+
 
         uriBuilder.appendQueryParameter("api-key","c4196b37-80f3-4f1c-a7f2-48a42c587fc2");
 
@@ -126,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // data set. This will trigger the ListView to update.
         if (news != null && !news.isEmpty()){
             mNewsAdapter.addAll(news);
-            //mEmptyStateTextView.setVisibility(View.GONE);
+            mEmptyStateTextView.setVisibility(View.GONE);
         }
     }
 
@@ -159,7 +169,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if(s.equals(getString(R.string.settings_search_default)) ||
-                s.equals(getString(R.string.settings_sections_key))){
+                s.equals(getString(R.string.settings_sections_key))||
+                s.equals(getString(R.string.settings_order_key))){
+
             mNewsAdapter.clear();
             mNewsAdapter.notifyDataSetChanged();
             mEmptyStateTextView.setVisibility(View.GONE);

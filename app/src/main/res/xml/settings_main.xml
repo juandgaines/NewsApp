@@ -8,6 +8,12 @@
         android:selectAllOnFocus="true"
         android:title="@string/settings_search_label" />
 
+    <ListPreference
+        android:defaultValue="@string/settings_order_default"
+        android:entries="@array/settings_order_labels"
+        android:entryValues="@array/settings_order_values"
+        android:key="@string/settings_order_key"
+        android:title="@string/settings_order_label"/>
 
     <ListPreference
         android:defaultValue="@string/settings_sections_default"

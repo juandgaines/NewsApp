@@ -11,9 +11,12 @@
     <string name="settings_search_label">Search keywords</string>
 
     <!-- Strings for search ListPreference-->
-    <string name="settings_sections_default">Technology</string>
+    <string name="settings_sections_default">none</string>
     <string name="settings_sections_key" translatable="false">sections_data</string>
     <string name="settings_sections_label">Sections</string>
+
+    <!-- Strings for search ListPreference-->
+
 
     <!--Array label labels for sections -->
     <string name="settings_search_art_and_design_label">Art and design"</string>
@@ -31,7 +34,17 @@
     <string name="settings_search_books_value">books</string>
     <string name="settings_search_better_business_value">better-business</string>
 
+    <string name="settings_order_default">none</string>
+    <string name="settings_order_key" translatable="false">order_data</string>
+    <string name="settings_order_label">Order by</string>
 
+    <string name="settings_order_newest_label">Newest</string>
+    <string name="settings_order_oldest_label">Oldest</string>
+    <string name="settings_order_relevance_label">Relevance</string>
+    <string name="settings_order_newest_value">newest</string>
+    <string name="settings_order_oldest_value">oldest</string>
+    <string name="settings_order_relevance_value">relevance</string>
+    <string name="settings_order_none_value">none</string>
+    <string name="settings_order_none_label">None</string>
 
-    
 </resources>
