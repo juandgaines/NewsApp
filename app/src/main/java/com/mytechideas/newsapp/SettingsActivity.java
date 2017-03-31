@@ -17,10 +17,10 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
     }
 
-    public static class NewsPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener{
+    public static class NewsPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
         @Override
-        public void onCreate(@Nullable Bundle savedInstanceState){
+        public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
 
@@ -30,26 +30,24 @@ public class SettingsActivity extends AppCompatActivity {
             Preference sections = findPreference(getString(R.string.settings_sections_key));
             bindPreferenceSummaryToValue(sections);
 
-            Preference orderBy=findPreference(getString(R.string.settings_order_key));
+            Preference orderBy = findPreference(getString(R.string.settings_order_key));
             bindPreferenceSummaryToValue(orderBy);
 
         }
 
 
-
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-            String stringValue=newValue.toString();
+            String stringValue = newValue.toString();
 
-            if (preference instanceof ListPreference){
+            if (preference instanceof ListPreference) {
                 ListPreference listPreference = (ListPreference) preference;
                 int prefIndex = listPreference.findIndexOfValue(stringValue);
                 if (prefIndex >= 0) {
                     CharSequence[] labels = listPreference.getEntries();
                     preference.setSummary(labels[prefIndex]);
                 }
-            }
-            else {
+            } else {
                 preference.setSummary(stringValue);
             }
 

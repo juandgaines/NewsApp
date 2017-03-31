@@ -12,19 +12,21 @@ import java.util.List;
 public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
     private String mUrl;
+
     public NewsLoader(Context context, String url) {
         super(context);
-        this.mUrl=url;
+        this.mUrl = url;
     }
 
     @Override
     public List<News> loadInBackground() {
-        if(mUrl==null)
-            return  null;
+        if (mUrl == null)
+            return null;
 
-        List<News> list=QueryUtils.fetchNewsData(mUrl);
+        List<News> list = QueryUtils.fetchNewsData(mUrl);
         return list;
     }
+
     @Override
     protected void onStartLoading() {
         forceLoad();

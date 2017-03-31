@@ -23,15 +23,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>>,SharedPreferences.OnSharedPreferenceChangeListener{
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>>, SharedPreferences.OnSharedPreferenceChangeListener {
 
 
     public static final String LOG_TAG = MainActivity.class.getName();
     //private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=c4196b37-80f3-4f1c-a7f2-48a42c587fc2";
-    private static final String NEWS_REQUEST_URL="https://content.guardianapis.com/search";
+    private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search";
     private static final int NEWS_LOADER_ID = 1;
     private newsAdapter mNewsAdapter;
-    private ArrayList<News> mArrayNews= new ArrayList<>();
+    private ArrayList<News> mArrayNews = new ArrayList<>();
 
     private TextView mEmptyStateTextView;
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         ListView list = (ListView) findViewById(R.id.list);
-        mEmptyStateTextView=(TextView) findViewById(R.id.empty_view);
+        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
 
         mNewsAdapter = new newsAdapter(this, R.layout.list_item, mArrayNews);
 
@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
             Log.v(LOG_TAG, "initLoader launched");
-        }
-        else{
+        } else {
             ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.loading_spinner);
             mProgressBar.setVisibility(View.GONE);
             mEmptyStateTextView.setText(R.string.no_internet);
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public Loader onCreateLoader(int i, Bundle bundle) {
         Log.v(LOG_TAG, "initLoader created");
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String searchPref=sharedPrefs.getString(
+        String searchPref = sharedPrefs.getString(
                 getString(R.string.settings_search_key),
                 getString(R.string.settings_search_default)
         );
@@ -97,32 +96,32 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_search_default)
         );
 
-        String orderBy=sharedPrefs.getString(
+        String orderBy = sharedPrefs.getString(
                 getString(R.string.settings_order_key),
                 getString(R.string.settings_order_default)
         );
 
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
-        Uri.Builder uriBuilder= baseUri.buildUpon();
+        Uri.Builder uriBuilder = baseUri.buildUpon();
 
 
-        uriBuilder.appendQueryParameter("q",searchPref);
-        if(!sections.equals("none")) {
+        uriBuilder.appendQueryParameter("q", searchPref);
+        if (!sections.equals("none")) {
             uriBuilder.appendQueryParameter("section", sections);
         }
-        if(!orderBy.equals("none")){
-            uriBuilder.appendQueryParameter("order-by",orderBy);
+        if (!orderBy.equals("none")) {
+            uriBuilder.appendQueryParameter("order-by", orderBy);
         }
 
 
-        uriBuilder.appendQueryParameter("api-key","c4196b37-80f3-4f1c-a7f2-48a42c587fc2");
+        uriBuilder.appendQueryParameter("api-key", "c4196b37-80f3-4f1c-a7f2-48a42c587fc2");
 
         Log.v(LOG_TAG, uriBuilder.toString());
-        return new NewsLoader(this,uriBuilder.toString());
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override
-    public void onLoadFinished(Loader <List<News>> loader, List<News> news) {
+    public void onLoadFinished(Loader<List<News>> loader, List<News> news) {
 
         mEmptyStateTextView.setVisibility(View.VISIBLE);
         mEmptyStateTextView.setText(R.string.no_news);
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Log.v(LOG_TAG, "onLoadFinished launched");
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
-        if (news != null && !news.isEmpty()){
+        if (news != null && !news.isEmpty()) {
             mNewsAdapter.addAll(news);
             mEmptyStateTextView.setVisibility(View.GONE);
         }
@@ -148,15 +147,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main,menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int ItemID =item.getItemId();
+        int ItemID = item.getItemId();
 
-        if(ItemID==R.id.action_settings){
+        if (ItemID == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
             return true;
@@ -165,12 +164,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
 
-
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        if(s.equals(getString(R.string.settings_search_default)) ||
-                s.equals(getString(R.string.settings_sections_key))||
-                s.equals(getString(R.string.settings_order_key))){
+        if (s.equals(getString(R.string.settings_search_default)) ||
+                s.equals(getString(R.string.settings_sections_key)) ||
+                s.equals(getString(R.string.settings_order_key))) {
 
             mNewsAdapter.clear();
             mNewsAdapter.notifyDataSetChanged();
@@ -179,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.loading_spinner);
             mProgressBar.setVisibility(View.VISIBLE);
 
-            getLoaderManager().restartLoader(NEWS_LOADER_ID,null,this);
+            getLoaderManager().restartLoader(NEWS_LOADER_ID, null, this);
 
 
         }

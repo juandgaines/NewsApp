@@ -39,10 +39,10 @@ public class QueryUtils {
                 String date;
                 try {
                     date = newsObject.getString("webPublicationDate");
-                }catch(JSONException e){
+                } catch (JSONException e) {
                     try {
                         date = newsObject.getString("sectionId");
-                    }catch (JSONException d){
+                    } catch (JSONException d) {
 
                         date = "";
                     }
@@ -53,8 +53,8 @@ public class QueryUtils {
                 String section;
                 try {
                     section = newsObject.getString("sectionName");
-                }catch (JSONException l){
-                    section=title;
+                } catch (JSONException l) {
+                    section = title;
                 }
                 news.add(new News(section, title, date, url));
 

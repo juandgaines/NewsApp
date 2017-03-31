@@ -13,14 +13,14 @@
         android:entries="@array/settings_order_labels"
         android:entryValues="@array/settings_order_values"
         android:key="@string/settings_order_key"
-        android:title="@string/settings_order_label"/>
+        android:title="@string/settings_order_label" />
 
     <ListPreference
         android:defaultValue="@string/settings_sections_default"
         android:entries="@array/settings_sections_labels"
         android:entryValues="@array/settings_sections_values"
         android:key="@string/settings_sections_key"
-        android:title="@string/settings_sections_label"/>
+        android:title="@string/settings_sections_label" />
 
     <!-- Label for order-by magnitude option [CHAR LIMIT=20]
        <ListPreference
