@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
     public static final String LOG_TAG = MainActivity.class.getName();
-    //private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=c4196b37-80f3-4f1c-a7f2-48a42c587fc2";
+  
     private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search";
     private static final int NEWS_LOADER_ID = 1;
     private newsAdapter mNewsAdapter;
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
 
-        uriBuilder.appendQueryParameter("api-key", "c4196b37-80f3-4f1c-a7f2-48a42c587fc2");
+        uriBuilder.appendQueryParameter("api-key", /*your api key*/);
 
         Log.v(LOG_TAG, uriBuilder.toString());
         return new NewsLoader(this, uriBuilder.toString());
