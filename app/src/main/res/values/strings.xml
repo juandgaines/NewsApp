@@ -18,8 +18,20 @@
     <!--Array label labels for sections -->
     <string name="settings_search_art_and_design_label">Art and design"</string>
     <string name="settings_search_australia_news_label" >Australia news"</string>
+    <string name="settings_search_better_business_label">Better Business</string>
+    <string name="settings_search_books_label">Books</string>
+    <string name="settings_business_label">Business</string>
+    <string name="settings_cardiff_label">Cardiff</string>
+
     <!--Array label values for sections -->
     <string name="settings_search_art_and_design_value">artanddesign</string>
     <string name="settings_search_australia_news_value">austalia-news</string>
+    <string name="settings_cardiff_value">cardiff</string>
+    <string name="settings_business_value">business</string>
+    <string name="settings_search_books_value">books</string>
+    <string name="settings_search_better_business_value">better-business</string>
+
+
+
     
 </resources>

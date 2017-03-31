@@ -9,7 +9,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -24,7 +23,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>>,Preference.OnPreferenceChangeListener{
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>>,SharedPreferences.OnSharedPreferenceChangeListener{
 
 
     public static final String LOG_TAG = MainActivity.class.getName();
@@ -47,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // And register to be notified of preference changes
+        // So we know when the user has adjusted the query settings
+        prefs.registerOnSharedPreferenceChangeListener(this);
 
         ListView list = (ListView) findViewById(R.id.list);
         mEmptyStateTextView=(TextView) findViewById(R.id.empty_view);
@@ -151,8 +154,22 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @Override
-    public boolean onPreferenceChange(Preference preference, Object o) {
-        return false;
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if(s.equals(getString(R.string.settings_search_default)) ||
+                s.equals(getString(R.string.settings_sections_key))){
+            mNewsAdapter.clear();
+            mNewsAdapter.notifyDataSetChanged();
+            mEmptyStateTextView.setVisibility(View.GONE);
+
+            ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.loading_spinner);
+            mProgressBar.setVisibility(View.VISIBLE);
+
+            getLoaderManager().restartLoader(NEWS_LOADER_ID,null,this);
+
+
+        }
     }
 }
